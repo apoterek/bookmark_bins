@@ -1,0 +1,17 @@
+{
+  "name": "Bookmark Bins",
+  "version": ".01",
+  "manifest_version": 1,
+  "icons": {
+    "16": "icons/blink-16.png",
+    "128": "icons/blink-128.png"
+  },
+  "app": {
+    "background": {
+      "page": "window.html"
+    }
+  },
+  "permissions": [
+ 	"fileSystem", 
+  ]
+}
