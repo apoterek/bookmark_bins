@@ -1,0 +1,100 @@
+
+		
+#bookmarkUI{
+	position:fixed;
+	width:80px;
+	height:80px;
+	top:50%;
+	left:50%;
+	margin-left: -40px;
+	margin-top:-40px;
+	background-color:black;
+	z-index:100000000000000;
+	visibility: hidden;
+	opacity:1;
+	-webkit-border-radius: 80px;
+}
+
+#bookmarkUI.makeVisible{
+	visibility: visible;
+	-webkit-animation-duration: .35s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-delay: .25;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+}
+
+
+#bookmarkUI.makeVisible.moveLeft{
+	
+	background-color:#00aeef; /*cyan*/
+
+	-webkit-animation-name: slideBookmarkLeft;
+}
+#bookmarkUI.makeVisible.moveRight{
+	background-color: #fff200; /*yellow*/
+	-webkit-animation-name: slideBookmarkRight;
+}
+#bookmarkUI.makeVisible.moveUp{
+	
+	background-color:#ec008c;/*magenta*/
+	-webkit-animation-name: slideBookmarkUp;
+}
+#bookmarkUI.makeVisible.moveDown{
+	background-color: #231f20; /*black*/
+	-webkit-animation-name: slideBookmarkDown;
+}
+
+
+/*#bookmarkUI.makeVisible.shiftDiv{
+
+	transition:2s;
+	transition-delay: 5s;
+	background-color:blue;
+	opacity:0;
+	margin-left:700px;
+
+
+}*/
+
+
+
+@-webkit-keyframes slideBookmarkLeft /* Safari and Chrome */
+{
+from {opacity: 1;}
+to {
+left: 0;
+margin-left:-80px;
+opacity: 0;
+}
+}
+
+@-webkit-keyframes slideBookmarkRight /* Safari and Chrome */
+{
+from {opacity: 1;}
+to {
+left: 100%;
+margin-left:0;
+opacity: 0;
+}
+}
+
+@-webkit-keyframes slideBookmarkUp/* Safari and Chrome */
+{
+from {opacity: 1;}
+to {
+top: 0;
+margin-top:-80px;
+opacity: 0;
+}
+}
+
+@-webkit-keyframes slideBookmarkDown /* Safari and Chrome */
+{
+from {opacity: 1;}
+to {
+top: 100%;
+margin-bottom:0;
+opacity: 0;
+}
+}

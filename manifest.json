@@ -46,5 +46,16 @@
   	"tabs",
   	"bookmarks"
  	//"fileSystem"
+  ],
+   "web_accessible_resources": [
+    "assets/styles/style.css"
+  ],
+  "content_scripts": [
+  {
+    "matches": ["https://*/*", "http://*/*"],
+    "js": ["assets/scripts/content.js"],
+    "css": ["assets/styles/style.css"],
+    "run_at": "document_end"
+  }
   ]
 }
