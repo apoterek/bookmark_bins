@@ -1,100 +1,288 @@
-
-		
-#bookmarkUI{
+#bookmarkUI {
 	position:fixed;
 	width:80px;
 	height:80px;
 	top:50%;
 	left:50%;
-	margin-left: -40px;
+	margin-left:-40px;
 	margin-top:-40px;
-	background-color:black;
-	z-index:100000000000000;
-	visibility: hidden;
+	background-color:#000;
+	z-index:1.0E+14;
+	visibility:hidden;
 	opacity:1;
-	-webkit-border-radius: 80px;
+	-webkit-border-radius:80px;
 }
 
-#bookmarkUI.makeVisible{
-	visibility: visible;
-	-webkit-animation-duration: .35s;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-delay: .25;
-	-webkit-animation-iteration-count: 1;
-	-webkit-animation-fill-mode: forwards;
+#bookmarkUI.makeVisible {
+	visibility:visible;
+	-webkit-animation-duration:.25s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:.25;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode:forwards;
 }
 
-
-#bookmarkUI.makeVisible.moveLeft{
-	
+#bookmarkUI.makeVisible.moveLeft {
 	background-color:#00aeef; /*cyan*/
+	-webkit-animation-name:slideBookmarkLeft;
+}
 
-	-webkit-animation-name: slideBookmarkLeft;
+#bookmarkUI.makeVisible.moveRight {
+	background-color:#fff200; /*yellow*/
+	-webkit-animation-name:slideBookmarkRight;
 }
-#bookmarkUI.makeVisible.moveRight{
-	background-color: #fff200; /*yellow*/
-	-webkit-animation-name: slideBookmarkRight;
+
+#bookmarkUI.makeVisible.moveUp {
+	background-color:#ec008c; /*magenta*/
+	-webkit-animation-name:slideBookmarkUp;
 }
-#bookmarkUI.makeVisible.moveUp{
+
+#bookmarkUI.makeVisible.moveDown {
+	background-color:#231f20; /*black*/
+	-webkit-animation-name:slideBookmarkDown;
+}
+
+.barsTopBottom{
+	position:fixed;
+	height:5px;
+	width:0px;
+	left:50%;
+	z-index:999999999999999999999999999999;
+	opacity:1;
+	-webkit-animation-duration:.35s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:.15s;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode:forwards;
+}
+
+.barsLeftRight{
+	position:fixed;
+	height:0px;
+	width:5px;
+	top:50%;
+	z-index:999999999999999999999999999999;
+	opacity:1;
+	-webkit-animation-duration:.35s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:.15s;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode:forwards;
+}
+
+
+.barsLeftRight.startLeft{
+	left:0;
+	background-color:#00aeef;
+	-webkit-animation-name:leftAnimations;
+
+}
+.barsLeftRight.startRight{
+	left:100%;
+	margin-left:-5px;
+	background-color:#fff200;
+	-webkit-animation-name:rightAnimations;
+
+}
+.barsTopBottom.startTop{
+	top:0;
+	background-color:#ec008c;
+	-webkit-animation-name:topAnimations;
+
+}
+
+.barsTopBottom.startBottom{
+	top:100%;
+	margin-top:-5px;
+	background-color:#231f20;
+
+	-webkit-animation-name:bottomAnimations;
+
+}
+.barsTopBottom.startBottom{
+	top:100%;
+	margin-top:-5px;
+	background-color:#231f20;
+
+	-webkit-animation-name:bottomAnimations;
+
+}
+#categoryDiv{
+	position:fixed;
+	width:200px;
+	height:75px;
+	text-align: center;
+	font-size:24pt;
+	line-height: 2.25;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-weight:bold;
+	color: white;
+	z-index:99999999999999999999999909999999;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);;
+	-webkit-animation-duration:.35s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:.15s;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode:forwards;
 	
-	background-color:#ec008c;/*magenta*/
-	-webkit-animation-name: slideBookmarkUp;
 }
-#bookmarkUI.makeVisible.moveDown{
-	background-color: #231f20; /*black*/
-	-webkit-animation-name: slideBookmarkDown;
+#categoryDiv.bottomText{
+	/*color:#231f20;*/
+
+	left:50%;
+	margin-left:-100px;
+	top:100%; 
+	margin-top:-100px;
+	-webkit-animation-name:textAnimations;
+
+}
+#categoryDiv.topText{
+	/*color:#ec008c;*/
+
+	left:50%;
+	margin-left:-100px;
+	margin-left:-100px;
+	top:25px; 
+	-webkit-animation-name:textAnimations;
+	
+}
+#categoryDiv.leftText{
+	/*color:#00aeef;*/
+
+	left:25px;
+	top:50%;
+	margin-top:-37px;
+	-webkit-animation-name:textAnimations;
+	
+	
+}
+#categoryDiv.rightText{
+	/*color:#fff200;*/
+
+	left:100%;
+	top:50%;
+	margin-top:-37px;
+	margin-left: -225px;
+	-webkit-animation-name:textAnimations;
+	
+	
+}
+@-webkit-keyframes textAnimations {
+	from{
+		opacity:1;
+	}
+	to{
+		opacity:0;	
+	}
+}
+@-webkit-keyframes leftAnimations {
+	from {
+		height:0;
+		opacity:1;
+	}
+	
+	to {
+		height:100%;
+		top:50%;
+		margin-top:-25%;
+		
+		opacity:0;
+	}
+}
+@-webkit-keyframes rightAnimations {
+	from {
+		height:0;
+		opacity:1;
+	}
+	
+	to {
+		height:100%;
+		top:50%;
+		margin-top:-25%;
+		
+		opacity:0;
+	}
+}
+@-webkit-keyframes topAnimations {
+	from {
+		width:0;
+		opacity:1;
+	}
+	
+	to {
+		width:100%;
+		left:50%;
+		margin-left:-50%;
+		
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes bottomAnimations {
+	from {
+		width:0;
+		opacity:1;
+	}
+	
+	to {
+		width:100%;
+		left:50%;
+		margin-left:-50%;
+		opacity:0;
+	}
 }
 
 
-/*#bookmarkUI.makeVisible.shiftDiv{
 
-	transition:2s;
-	transition-delay: 5s;
-	background-color:blue;
-	opacity:0;
-	margin-left:700px;
-
-
-}*/
-
-
-
-@-webkit-keyframes slideBookmarkLeft /* Safari and Chrome */
-{
-from {opacity: 1;}
-to {
-left: 0;
-margin-left:-80px;
-opacity: 0;
-}
+/* Safari and Chrome */
+@-webkit-keyframes slideBookmarkLeft {
+	from {
+		opacity:1;
+	}
+	
+	to {
+		left:0;
+		margin-left:-80px;
+		opacity:0;
+	}
 }
 
-@-webkit-keyframes slideBookmarkRight /* Safari and Chrome */
-{
-from {opacity: 1;}
-to {
-left: 100%;
-margin-left:0;
-opacity: 0;
-}
-}
-
-@-webkit-keyframes slideBookmarkUp/* Safari and Chrome */
-{
-from {opacity: 1;}
-to {
-top: 0;
-margin-top:-80px;
-opacity: 0;
-}
+/* Safari and Chrome */
+@-webkit-keyframes slideBookmarkRight {
+	from {
+		opacity:1;
+	}
+	
+	to {
+		left:100%;
+		margin-left:0;
+		opacity:0;
+	}
 }
 
-@-webkit-keyframes slideBookmarkDown /* Safari and Chrome */
-{
-from {opacity: 1;}
-to {
-top: 100%;
-margin-bottom:0;
-opacity: 0;
+/* Safari and Chrome */
+@-webkit-keyframes slideBookmarkUp {
+	from {
+		opacity:1;
+	}
+	
+	to {
+		top:0;
+		margin-top:-80px;
+		opacity:0;
+	}
 }
+
+/* Safari and Chrome */
+@-webkit-keyframes slideBookmarkDown {
+	from {
+		opacity:1;
+	}
+	
+	to {
+		top:100%;
+		margin-bottom:0;
+		opacity:0;
+	}
 }

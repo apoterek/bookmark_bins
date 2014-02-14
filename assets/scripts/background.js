@@ -131,6 +131,14 @@ chrome.commands.onCommand.addListener(function(command) {
 		var tabId;
 		var tabUrl;
 		var currentCommand;
+		
+		var commandText;
+		
+
+
+
+		
+		
 		//alert("this is the bin obj: " + leftObj.title);
 		var commandObj;
 		switch(command){
@@ -138,27 +146,52 @@ chrome.commands.onCommand.addListener(function(command) {
 				
 				currentCommand = "bottom";
 				commandObj = bottomObj;
+				
+		      	chrome.storage.local.get("bottomTitle", function(res){
+					commandText = res.bottomTitle;
+				});	
+						
 				break;
 			case "topBin":
 				currentCommand = "top"
 				commandObj = topObj;
-
+		      	chrome.storage.local.get("topTitle", function(res){
+					commandText = res.topTitle;
+		
+				});				
 				break;		
+				
+				
 			case "leftBin":
 				currentCommand = "left"
 				commandObj = leftObj;
-
+		      	chrome.storage.local.get("leftTitle", function(res){
+					commandText = res.leftTitle;
+				});
 				break;	
+				
+				
 			case "rightBin":
 				currentCommand = "right"
 				commandObj = rightObj;
+		      	chrome.storage.local.get("rightTitle", function(res){
+					commandText = res.rightTitle;
+		
+				});
 
 				break;			
 		}
 		
+
 		chrome.tabs.getSelected(null, function(tab) {
+					chrome.storage.local.get("leftTitle", function(res){
+						console.log(res.leftTitle);
+					});
+	
 		
-		  //properties of tab object
+		
+		
+				  //properties of tab object
 		  tabId = tab.id;
 		  tabUrl = tab.url;
 		  tabTitle = tab.title;
@@ -167,19 +200,49 @@ chrome.commands.onCommand.addListener(function(command) {
 		 // alert(currentCommand + tabTitle);
 		  var bookmarkURL;
 		  bookMarkURL = tabUrl;
+		 /* 	chrome.bookmarks.getSubTree(commandObj.id, function(results){
+		console.log(results.length);
+	});*/
+			var addBookmark = function(dupe){
+			if(dupe == false){
+				chrome.bookmarks.create({'parentId': commandObj.id, 'title': tabTitle, 'url': tab.url});			
+			}
 
-		  chrome.bookmarks.create({'parentId': commandObj.id,
-                         'title': tabTitle,
-                         'url': tab.url});
+				  //rest of the save functionality.
+				  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+				  	chrome.tabs.sendMessage(tabs[0].id, {direction: currentCommand, dupeResult: dupe, divText: commandText}, function(response) {
+					  	// console.log(response.farewell);
+					});
+				  }); 
+								
+			}
+	//		addBookmark();
+			chrome.bookmarks.search(tab.url, function(results){
+			console.log(results);
+				if(results.length){
+					var duplicate;
+					console.log("some results");
+					results.forEach(function(binsID){
+						if(binsID.parentId == commandObj.id){
+							duplicate = true;
+						}
+					});
+					if(duplicate == true){
+						addBookmark(true);
+						return;
+					}else{
+						addBookmark(false);
+					}
+				}else{
+					console.log("no results");
+					addBookmark(false);
+				}
+				
 
-			
-		  //rest of the save functionality.
-		  
-		 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		  chrome.tabs.sendMessage(tabs[0].id, {direction: currentCommand}, function(response) {
-		   // console.log(response.farewell);
-		  });
-		}); 
+			 
+			 
+			 
+			});
 		  
 		  
 		  
