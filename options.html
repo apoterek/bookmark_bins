@@ -1,31 +1,31 @@
 <html>
+<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
 <head><title>My Test Extension Options</title></head>
 
-<body>
-
-Favorite Color:
-<select id="color">
- <option value="red">red</option>
- <option value="green">green</option>
- <option value="blue">blue</option>
- <option value="yellow">yellow</option>
-</select>
+<body id="optionsBody">
 
 
-<form id="directions">
-Left:	 <input id="left" type="text" name="left"><br>
-Top: 	 <input id="tops" type="text" name="tops"><br>
-Right: 	 <input id="right" type="text" name="right"><br>
-Bottom:	 <input id="bottom" type="text" name="bottom">
 
-</form>
 
+<div id="parentGrid">
+	<div class="box"></div>	
+	<div class="box"><input id="tops" class="inputBin" type="text" name="tops"></div>
+	<div class="box"></div>	
+	
+	<div class="box"><input id="left" class="inputBin" type="text" name="left"></div>	
+	<div class="box"><div id="status"></div>
+<button id="save">Save</button></div>
+	<div class="box"><input id="right" class="inputBin" type="text" name="right"></div>	
+	
+	<div class="box"></div>	
+	<div class="box"><input id="bottom" class="inputBin" type="text" name="bottom"></div>
+	<div class="box"></div>	
+</div>
 
 
 
 <br>
-<div id="status"></div>
-<button id="save">Save</button>
+
 </body>
 
 <script src="assets/scripts/options.js"></script>

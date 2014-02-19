@@ -3,16 +3,22 @@
 var div = document.createElement( 'div' );
 var barDiv = document.createElement( 'div' );
 var categoryDiv = document.createElement('div');
+var topNum = document.createElement('div');
+var botNum = document.createElement('div');
 var directionText;
 //append all elements
 document.body.appendChild( barDiv );
 document.body.appendChild( div );
 document.body.appendChild(categoryDiv);
+categoryDiv.appendChild(topNum);
+categoryDiv.appendChild(botNum);
 
 //set attributes for div
 div.id 				= 'bookmarkUI';
 categoryDiv.id		= "categoryDiv";
 barDiv.className 	= 'barsTopBottom';
+topNum.id			= 'topNum';
+botNum.id 			= 'botNum';
 
 
 
@@ -27,15 +33,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 				if(request.dupeResult == false){
 					div.className = "makeVisible moveDown";	
 					categoryDiv.className ="bottomText";
-					categoryDiv.innerHTML = divText;
+					//categoryDiv.innerHTML = divText;
+					botNum.className = 'shiftDown';
+					topNum.className = 'shiftDown';
 				}
 
 				barDiv.className = "barsTopBottom startBottom";
 				barDiv.addEventListener( 'webkitAnimationEnd', function( event ) { 
+				setTimeout(function(){
 				         barDiv.className = "";
 				         div.className = "";
 				         categoryDiv.className = "";
 				         categoryDiv.innerHTML = "";
+				         botNum.className = '';
+						 topNum.className = '';
+						 }, 10000);
 				         
 				}, false );				
 				break;
